@@ -4,8 +4,7 @@ const Styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     width: '100%',
-    marginTop: 30,
-    height: 40,
+    paddingVertical: 20,
   },
   wrapperIcon: {
     width: '20%',

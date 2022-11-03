@@ -4,4 +4,5 @@ export default {
   CARDS: 'cards',
   PROFILE: 'profile',
   MAIN: 'main',
+  TOPUP: 'topup',
 };

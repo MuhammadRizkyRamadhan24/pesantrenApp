@@ -24,6 +24,7 @@ const CustomTextInput = ({
   styleContainer,
   onSubmitEditing,
   isScan,
+  isTopup,
   itemName,
   ...props
 }) => {
@@ -34,41 +35,65 @@ const CustomTextInput = ({
   return (
     <View style={ [Styles.container, styleContainer] }>
       <Text style={ Styles.textLabel }>{ label }</Text>
-      <View style={ Styles.wrapInput }>
-        <TextInput
-          value={ value }
-          editable={ editable }
-          placeholder={ placeholder }
-          autoFocus={ autoFocus }
-          onChangeText={ onChangeText }
-          onSubmitEditing={ onSubmitEditing }
-          style={ [
-            editable ? Styles.input(icon) : Styles.inputDisable(icon),
-            Styles[type || 'default'],
-            style,
-          ] }
-          keyboardType={ isNumber ? 'phone-pad' : 'default' }
-          secureTextEntry={ isPassword ? state.hide : false }
-          { ...props }
-        />
-        { isPassword && (
-          <TouchableOpacity
-            activeOpacity={ 0.8 }
-            onPress={ () => setState({ ...state, hide: !state.hide }) }
-            style={ Styles.hideButton }>
-            <Feather
-              color={ Colors.grey }
-              name={ state.hide ? 'eye-off' : 'eye' }
-              size={ 20 }
+      { isTopup ?
+        <View>
+          <Text size='s' weight='semibold'>Nominal</Text>
+          <View style={ Styles.wrapInputTopup }>
+            <Text size='xl' >Rp</Text>
+            <TextInput
+              value={ value }
+              editable={ editable }
+              placeholder={ placeholder }
+              autoFocus={ autoFocus }
+              onChangeText={ onChangeText }
+              onSubmitEditing={ onSubmitEditing }
+              style={ [
+                Styles.topup,
+                Styles[type || 'default'],
+                style,
+              ] }
+              keyboardType={ isNumber ? 'phone-pad' : 'default' }
+              secureTextEntry={ isPassword ? state.hide : false }
+              { ...props }
             />
-          </TouchableOpacity>
-        ) }
-        { isScan && (
-          <TouchableOpacity style={ Styles.hideButton } onPress={ () => NavigationHelper.navigate(screenName.SCAN_BARCODE, { itemName: itemName }) }>
-            <Icon name='camera' size={ 20 } color={ Colors.primary }/>
-          </TouchableOpacity>
-        ) }
-      </View>
+          </View>
+        </View>
+        :
+        <View style={ Styles.wrapInput }>
+          <TextInput
+            value={ value }
+            editable={ editable }
+            placeholder={ placeholder }
+            autoFocus={ autoFocus }
+            onChangeText={ onChangeText }
+            onSubmitEditing={ onSubmitEditing }
+            style={ [
+              editable ? Styles.input(icon) : Styles.inputDisable(icon),
+              Styles[type || 'default'],
+              style,
+            ] }
+            keyboardType={ isNumber ? 'phone-pad' : 'default' }
+            secureTextEntry={ isPassword ? state.hide : false }
+            { ...props }
+          />
+          { isPassword && (
+            <TouchableOpacity
+              activeOpacity={ 0.8 }
+              onPress={ () => setState({ ...state, hide: !state.hide }) }
+              style={ Styles.hideButton }>
+              <Feather
+                color={ Colors.grey }
+                name={ state.hide ? 'eye-off' : 'eye' }
+                size={ 20 }
+              />
+            </TouchableOpacity>
+          ) }
+          { isScan && (
+            <TouchableOpacity style={ Styles.hideButton } onPress={ () => NavigationHelper.navigate(screenName.SCAN_BARCODE, { itemName: itemName }) }>
+              <Icon name='camera' size={ 20 } color={ Colors.primary }/>
+            </TouchableOpacity>
+          ) }
+        </View> }
     </View>
   );
 };

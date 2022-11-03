@@ -1,9 +1,19 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from 'src/utils/colors';
+import { RatioHelper } from 'src/helpers/index';
 
 const Styles = StyleSheet.create({
   container: {
     marginVertical: 8,
+  },
+  topup: {
+    fontFamily: 'Poppins-Regular',
+    color: Colors.darkerBlack,
+    alignItems: 'center',
+    fontSize: RatioHelper.normalize(24),
+    flex: 1,
+    paddingLeft:5,
+    paddingVertical: 0,
   },
   input: icon => ({
     borderColor: Colors.borderInput,
@@ -30,7 +40,6 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     borderRadius: 10,
-    // borderWidth: 1,
     borderBottomWidth: 1,
     fontSize: 12,
     height: 48,
@@ -38,6 +47,11 @@ const Styles = StyleSheet.create({
     paddingLeft: icon ? 60 : 25,
   }),
   wrapInput: { flexDirection: 'row' },
+  wrapInputTopup: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   error: {
     color: Colors.error,
     paddingHorizontal: 4,

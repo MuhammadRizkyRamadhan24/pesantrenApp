@@ -231,10 +231,10 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file('megahub-mobile.keystore')
-            storePassword 'JNE2jayalah'
-            keyAlias 'megahub-mobile'
-            keyPassword 'JNE2jayalah'
+            storeFile file('pesantren-app-key.keystore')
+            storePassword 'zidan3103117328'
+            keyAlias 'pesantren-app-key'
+            keyPassword 'zidan3103117328'
     }
     }
     buildTypes {

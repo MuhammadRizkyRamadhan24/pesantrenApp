@@ -12,6 +12,8 @@ import Styles from './style';
 import Icon from 'react-native-vector-icons/Entypo';
 import Images from 'consts/Images';
 import { Colors } from 'src/utils/colors';
+import { NavigationHelper } from 'helpers/';
+import screenName from 'config/screenName';
 
 const Home = () => {
   const dataMenu = [
@@ -19,6 +21,7 @@ const Home = () => {
       id: 1,
       icon: Images.topup,
       title: 'Topup',
+      click: () => NavigationHelper.navigate(screenName.TOPUP),
     },
     {
       id: 2,
@@ -185,7 +188,7 @@ const Home = () => {
             justifyContent: 'space-around',
           } }>
           { dataMenu.map((d, i) => (
-            <TouchableOpacity key={ d.id } activeOpacity={ 0.8 }>
+            <TouchableOpacity key={ d.id } activeOpacity={ 0.8 } onPress={ d.click }>
               <View
                 style={ {
                   backgroundColor: Colors.lightGrey,
