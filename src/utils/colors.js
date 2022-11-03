@@ -1,0 +1,17 @@
+export const Colors = {
+  white: '#FFFFFF',
+  primary: '#3cbebb',
+  disabled: '#dddddd',
+  defaultColor: 'rgba(0, 0, 0, 0.3)',
+  darkerBlack: '#404040',
+  borderInput: '#DDE5E9',
+  black: '#404040',
+  grey: '#94989f',
+  grey2: '#F3F4F8',
+  error: '#F83231',
+  lightGrey: '#F7F7F7',
+  lightBlue: '#E5EEF9',
+  ironsideGrey: '#666666',
+  greenWhite: '#e8e8e8',
+  green: '#116530',
+};

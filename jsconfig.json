@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "components/*": [
+        "./src/components/*"
+      ],
+      "config/*": [
+        "./src/config/*"
+      ],
+      "consts/*": [
+        "./src/consts/*"
+      ],
+      "screens/*": [
+        "./src/screens/*"
+      ],
+      "helpers/*": [
+        "./src/helpers/*"
+      ],
+      "redux-app/*": [
+        "./src/redux/*"
+      ],
+    }
+  }
+}
