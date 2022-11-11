@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { Text, CustomTextInput, Button } from 'components/';
 import Styles from './style';
 import Images from 'consts/Images';
@@ -72,15 +72,14 @@ const Login = () => {
               { errors.pass && touched.pass && (
                 <Text style={ { fontSize: 10, color: 'red' } }>{ errors.pass }</Text>
               ) }
-              <CustomTextInput
-                placeholder='Password'
-                onChangeText={ handleChange('pass') }
-                onBlur={ handleBlur('pass') }
-                value={ values.pass }
-              />
-              { errors.pass && touched.pass && (
-                <Text style={ { fontSize: 10, color: 'red' } }>{ errors.pass }</Text>
-              ) }
+              <View style={ { flexDirection: 'row', justifyContent: 'space-between', marginTop: 5 } }>
+                <TouchableOpacity activeOpacity={ 0.8 }>
+                  <Text size={ 'xxs' } weight={ 'medium' }>Lupa password?</Text>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={ 0.8 }>
+                  <Text size={ 'xxs' } weight={ 'medium' }>Belum punya akun?</Text>
+                </TouchableOpacity>
+              </View>
               <Button
                 text='Login'
                 mode='default'
