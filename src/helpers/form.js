@@ -149,7 +149,7 @@ const phonePattern =  Yup.string().min(10, 'Minimal 10 Angka').matches(phoneRegE
 
 const namePattern = Yup.string().required('Nama Lengkap dibutuhkan');
 
-const pinPattern = Yup.string().min(6, 'Minimal 6 Angka').max(6, 'Maksimal 6 Angka').required('PIN dibutuhkan');
+const pinPattern = Yup.string().min(5, 'Minimal 6 Angka').max(6, 'Maksimal 6 Angka').required('PIN dibutuhkan');
 
 export function useForm(initialState) {
   const [state, setState] = useState(initialState);

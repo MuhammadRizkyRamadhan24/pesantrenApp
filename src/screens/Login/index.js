@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
-import { Text, CustomTextInput, Button } from 'components/';
+import { Text, CustomTextInput, Button, CustomModal } from 'components/';
 import Styles from './style';
 import Images from 'consts/Images';
 import { Formik } from 'formik';
@@ -10,16 +10,31 @@ import navigation from 'helpers/navigation';
 import screenName from 'config/screenName';
 import { Colors } from 'src/utils/colors';
 
-// import { loginFetch } from 'redux-app/auth/actions';
-// import { useDispatch } from 'react-redux';
+import { loginFetch } from 'redux-app/auth/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Login = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.misc.loading);
+
+  console.log(loading);
 
   const loginValidationSchema = Yup.object().shape({
     phone: form.phonePattern,
     pin: form.pinPattern,
   });
+
+  const handleLoginFetch = val => {
+    const value = {
+      phone: val.phone,
+      password: val.pin,
+    };
+    dispatch(
+      loginFetch({
+        data: value,
+      }),
+    );
+  };
 
   // async function handleLogin() {
   //   // console.log();
@@ -54,11 +69,11 @@ const Login = () => {
         </Text>
         <Formik
           initialValues={ {
-            phone: '+62',
+            phone: '',
             pin: '',
           } }
           validationSchema={ loginValidationSchema }
-          onSubmit={ () => navigation.navigate(screenName.MAIN) }>
+          onSubmit={ handleLoginFetch }>
           { ({
             handleChange,
             handleBlur,
@@ -74,7 +89,7 @@ const Login = () => {
                 onChangeText={ handleChange('phone') }
                 onBlur={ handleBlur('phone') }
                 value={ values.phone }
-                keyboardType={ 'phone-pad' }
+                keyboardType={ 'numeric' }
               />
               { errors.phone && touched.phone && (
                 <Text size='xxs' color={ Colors.error }>{ errors.phone }</Text>
@@ -84,7 +99,7 @@ const Login = () => {
                 onChangeText={ handleChange('pin') }
                 onBlur={ handleBlur('pin') }
                 value={ values.pin }
-                keyboardType={ 'number-pad' }
+                keyboardType={ 'numeric' }
                 isPassword
               />
               { errors.pin && touched.pin && (
@@ -108,6 +123,11 @@ const Login = () => {
           ) }
         </Formik>
       </View>
+      <CustomModal
+        modalVisible= { !!loading.loginFetch ?? false }
+        type='loading'
+        titleTwo='Tunggu Sebentar...'
+      />
     </View>
   );
 };
