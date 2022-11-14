@@ -41,6 +41,7 @@ export const apiRequest = (
 
     body = formData;
   } else {
+    console.log(param, 'test');
     body = param?.data ? JSON.stringify(param?.data) : JSON.stringify(param);
   }
 
@@ -114,10 +115,16 @@ export const apiRequest = (
     })
     .catch(err => {
       if (err.code === 'ECONNABORTED') {
-        store.dispatch(
-          setToast({
-            message: 'Request Timeout, Please try again',
-          }),
+        // store.dispatch(
+        //   setToast({
+        //     message: 'Request Timeout, Please try again',
+        //   }),
+        // );
+        Alert.alert(
+          'Request Timeout,',
+          'Please try again',
+          [{ text: 'Ok' }],
+          { cancelable: false },
         );
       } else {
         MiscHelper.consoleLogger('======== ERROR ========');
@@ -150,8 +157,14 @@ const dateFormat = date => {
   return moment(date).format('YYYY-MM-DD HH:MM:SS');
 };
 
+const stringToCurrency = s => {
+  s = s.toString().replace(/[^\d]/g, '');
+  return s.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+};
+
 export default {
   usernamePattern,
   passwordPattern,
   dateFormat,
+  stringToCurrency,
 };

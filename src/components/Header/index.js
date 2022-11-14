@@ -13,7 +13,8 @@ const Basic = ({ title, size }) => {
       <View style={ Styles.wrapperIcon }>
         <TouchableOpacity
           activeOpacity={ 0.8 }
-          onPress={ () => NavigationHelper.goBack() }>
+          onPress={ () => NavigationHelper.goBack() }
+          style={ { padding: 5 } }>
           <Image style={ { width: 25, height: 25 } } source={ Images.iconBack } />
         </TouchableOpacity>
       </View>

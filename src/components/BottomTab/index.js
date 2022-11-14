@@ -1,25 +1,25 @@
 import React from 'react';
-import {Image, View} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Images} from 'consts/index';
-import {Text} from 'components/';
-import {NavigationHelper} from 'helpers/index';
+import { Image, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Images } from 'consts/index';
+import { Text } from 'components/';
+import { NavigationHelper } from 'helpers/index';
 import Home from 'screens/Home';
 import Cards from 'screens/Cards';
 import Profile from 'screens/Profile';
 import History from 'screens/History';
 
 const BottomTab = createBottomTabNavigator();
-const bottomTabScreenOptions = {unmountOnBlur: true, height: 200};
+const bottomTabScreenOptions = { unmountOnBlur: true, height: 200 };
 const bottomTabScreens = [
-  {name: 'home', component: Home},
-  {name: 'cards', component: Cards},
-  {name: 'history', component: History},
-  {name: 'profile', component: Profile},
+  { name: 'home', component: Home },
+  { name: 'cards', component: Cards },
+  { name: 'history', component: History },
+  { name: 'profile', component: Profile },
 ];
 
 const BottomTabNav = () => {
-  const listeners = ({route}) => ({
+  const listeners = ({ route }) => ({
     tabPress: e => {
       e.preventDefault();
       NavigationHelper.resetTabNav(route.name);
@@ -28,76 +28,76 @@ const BottomTabNav = () => {
 
   return (
     <BottomTab.Navigator
-      lazy={true}
-      initialRouteName="Home"
-      tabBarOptions={{
+      lazy={ true }
+      initialRouteName='Home'
+      tabBarOptions={ {
         keyboardHidesTabBar: true,
         showLabel: false,
-      }}
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused}) => {
+      } }
+      screenOptions={ ({ route }) => ({
+        tabBarIcon: ({ focused }) => {
           let imageFocused, imageUnFocused;
 
           switch (route.name) {
-            case 'home':
-              imageFocused = Images.homeFocused;
-              imageUnFocused = Images.home;
-              break;
-            case 'cards':
-              imageFocused = Images.cardBottomFocused;
-              imageUnFocused = Images.cardBottom;
-              break;
-            case 'history':
-              imageFocused = Images.historyFocused;
-              imageUnFocused = Images.history;
-              break;
-            case 'profile':
-              imageFocused = Images.profileFocused;
-              imageUnFocused = Images.profile;
-              break;
+          case 'home':
+            imageFocused = Images.homeFocused;
+            imageUnFocused = Images.home;
+            break;
+          case 'cards':
+            imageFocused = Images.cardBottomFocused;
+            imageUnFocused = Images.cardBottom;
+            break;
+          case 'history':
+            imageFocused = Images.historyFocused;
+            imageUnFocused = Images.history;
+            break;
+          case 'profile':
+            imageFocused = Images.profileFocused;
+            imageUnFocused = Images.profile;
+            break;
           }
           const sourceImage = focused ? imageFocused : imageUnFocused;
           return (
             <View
-              style={{
+              style={ {
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginTop: 2,
-              }}>
+              } }>
               <Image
-                source={sourceImage}
-                style={{
+                source={ sourceImage }
+                style={ {
                   width: route.name === 'postInput' ? 60 : 20,
                   height: route.name === 'postInput' ? 60 : 20,
-                }}
+                } }
               />
               <Text
-                color={focused ? '#3cbebb' : '#404040'}
-                weight={'medium'}
-                style={{paddingTop: 2, fontSize: 10}}>
-                {route.name === 'home'
+                color={ focused ? '#0374bf' : '#404040' }
+                weight={ 'medium' }
+                style={ { paddingTop: 2, fontSize: 10 } }>
+                { route.name === 'home'
                   ? 'Beranda'
                   : route.name === 'cards'
-                  ? 'Kartu'
-                  : route.name === 'history'
-                  ? 'History'
-                  : route.name === 'profile'
-                  ? 'Akun'
-                  : null}
+                    ? 'Kartu'
+                    : route.name === 'history'
+                      ? 'History'
+                      : route.name === 'profile'
+                        ? 'Akun'
+                        : null }
               </Text>
             </View>
           );
         },
-      })}>
-      {bottomTabScreens.map((screen, index) => (
+      }) }>
+      { bottomTabScreens.map((screen, index) => (
         <BottomTab.Screen
-          key={index}
-          name={screen.name}
-          component={screen.component}
-          options={bottomTabScreenOptions}
+          key={ index }
+          name={ screen.name }
+          component={ screen.component }
+          options={ bottomTabScreenOptions }
           // listeners={listeners}
         />
-      ))}
+      )) }
     </BottomTab.Navigator>
   );
 };

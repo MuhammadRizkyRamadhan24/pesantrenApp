@@ -26,24 +26,12 @@ const Cards = () => {
   return (
     <View style={ Styles.container }>
       <View
-        style={ {
-          backgroundColor: Colors.primary,
-          paddingTop: 20,
-          paddingHorizontal: 20,
-          paddingBottom: 30,
-          borderBottomLeftRadius: 50,
-          borderBottomRightRadius: 50,
-        } }>
+        style={ Styles.containerTop }>
         <Image
-          source={ Images.icon }
-          style={ {
-            width: 130,
-            height: 60,
-            resizeMode: 'contain',
-            marginBottom: 20,
-          } }
+          source={ Images.iconName }
+          style={ Styles.logo }
         />
-        <View style={ { flexDirection: 'row', justifyContent: 'space-around' } }>
+        <View style={ Styles.containerMenu }>
           { dataMenu.map((d, i) => (
             <TouchableOpacity key={ d.id } activeOpacity={ 0.8 }>
               <View
@@ -55,11 +43,11 @@ const Cards = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 } }>
-                <Image source={ d.icon } style={ { width: 30, height: 30 } } />
+                <Image source={ d.icon } style={ { width: 34, height: 34 } } />
               </View>
               <Text
                 size={ 'xxs' }
-                weight={ 'semibold[' }
+                weight={ 'medium' }
                 style={ { textAlign: 'center', paddingTop: 10 } }
                 color={ Colors.lightGrey }>
                 { d.title }

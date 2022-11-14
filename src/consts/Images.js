@@ -1,9 +1,11 @@
 export default {
   iconBack: require('../assets/icons/IconBack.png'),
-  icon: require('../assets/icons/Icon.jpeg'),
+  icon: require('../assets/icons/Icon.png'),
+  iconName: require('../assets/icons/IconName.png'),
   transfer: require('../assets/icons/data-transfer.png'),
   topup: require('../assets/icons/topup.png'),
   card: require('../assets/icons/card.png'),
+  cs: require('../assets/icons/cs.png'),
   phone: require('../assets/icons/phone.png'),
   water: require('../assets/icons/water.png'),
   flash: require('../assets/icons/flash.png'),

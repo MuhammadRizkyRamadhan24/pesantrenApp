@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {RatioHelper} from 'src/helpers/index';
+import { StyleSheet } from 'react-native';
+import { RatioHelper } from 'src/helpers/index';
 
 const Styles = StyleSheet.create({
   weight_default: {
@@ -24,7 +24,7 @@ const Styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
   },
   color: color => ({
-    color: color || '#333333',
+    color: color || '#404040',
   }),
   font_xxxs: {
     fontSize: RatioHelper.normalize(8),

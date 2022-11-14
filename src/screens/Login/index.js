@@ -5,19 +5,37 @@ import Styles from './style';
 import Images from 'consts/Images';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import form from 'helpers/form';
+import { apiRequest } from 'helpers/form';
+import endpoints from 'config/endpoints';
 import navigation from 'helpers/navigation';
 import screenName from 'config/screenName';
+import { Colors } from 'src/utils/colors';
+
 // import { loginFetch } from 'redux-app/auth/actions';
-import form from 'helpers/form';
 // import { useDispatch } from 'react-redux';
 
 const Login = () => {
   // const dispatch = useDispatch();
 
   const loginValidationSchema = Yup.object().shape({
-    user: form.usernamePattern,
-    pass: form.passwordPattern,
+    username: form.usernamePattern,
+    password: form.passwordPattern,
   });
+
+  async function handleLogin() {
+    // console.log();
+    const val = {
+      usernamename: 'admin',
+      passwordword: 'admin',
+    };
+    try {
+      const result = await apiRequest(endpoints.login, 'post', val);
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   // const handleLoginFetch = val => {
   //   dispatch(
@@ -33,13 +51,13 @@ const Login = () => {
         <Image source={ Images.icon } style={ Styles.logo } />
       </View>
       <View style={ Styles.mainContainer }>
-        <Text weight='bold' size='xl'>
+        <Text weight='bold' size='xl' >
           Login
         </Text>
         <Formik
           initialValues={ {
-            user: 'TEST',
-            pass: 'N1234',
+            username: '',
+            password: '',
           } }
           validationSchema={ loginValidationSchema }
           onSubmit={ () => navigation.navigate(screenName.MAIN) }>
@@ -55,29 +73,29 @@ const Login = () => {
             <>
               <CustomTextInput
                 placeholder='Username'
-                onChangeText={ handleChange('user') }
-                onBlur={ handleBlur('user') }
-                value={ values.user }
+                onChangeText={ handleChange('username') }
+                onBlur={ handleBlur('username') }
+                value={ values.username }
               />
-              { errors.user && touched.user && (
-                <Text style={ { fontSize: 10, color: 'red' } }>{ errors.user }</Text>
+              { errors.username && touched.username && (
+                <Text size='xxs' color={ Colors.error }>{ errors.username }</Text>
               ) }
               <CustomTextInput
                 placeholder='Password'
-                onChangeText={ handleChange('pass') }
-                onBlur={ handleBlur('pass') }
-                value={ values.pass }
+                onChangeText={ handleChange('password') }
+                onBlur={ handleBlur('password') }
+                value={ values.password }
                 isPassword
               />
-              { errors.pass && touched.pass && (
-                <Text style={ { fontSize: 10, color: 'red' } }>{ errors.pass }</Text>
+              { errors.password && touched.password && (
+                <Text size='xxs' color={ Colors.error }>{ errors.password }</Text>
               ) }
-              <View style={ { flexDirection: 'row', justifyContent: 'space-between', marginTop: 5 } }>
+              <View style={ Styles.containerRegister }>
                 <TouchableOpacity activeOpacity={ 0.8 }>
-                  <Text size={ 'xxs' } weight={ 'medium' }>Lupa password?</Text>
+                  <Text size={ 'xxs' } weight={ 'medium' } >Lupa password?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={ 0.8 }>
-                  <Text size={ 'xxs' } weight={ 'medium' }>Belum punya akun?</Text>
+                  <Text size={ 'xxs' } weight={ 'medium' } >Belum punya akun?</Text>
                 </TouchableOpacity>
               </View>
               <Button
