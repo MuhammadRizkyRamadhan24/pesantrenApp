@@ -32,7 +32,7 @@ const Register = () => {
           </Text>
           <Formik
             initialValues={ {
-              phone: '+62',
+              phone: '',
               name: '',
               pin: '',
               rewritePin:'',
