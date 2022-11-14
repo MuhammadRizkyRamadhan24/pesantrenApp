@@ -21,7 +21,8 @@ function* sagaLoginFetch(data) {
         status: false,
       }),
     );
-    yield putResolve(loginResp(result.data));
+    console.log(result);
+    yield putResolve(loginResp(result));
   } catch (err) {
     yield putResolve(
       setLoading({
