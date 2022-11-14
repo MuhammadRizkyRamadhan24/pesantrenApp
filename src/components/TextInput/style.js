@@ -46,7 +46,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     paddingLeft: icon ? 60 : 25,
   }),
-  wrapInput: { flexDirection: 'row' },
+  wrapInput: { flexDirection: 'column' },
   wrapInputTopup: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -78,7 +78,7 @@ const Styles = StyleSheet.create({
   default: {
     borderRadius: 10,
   },
-  hideButton: { position: 'absolute', right: 18, top: 14 },
+  hideButton: { position: 'absolute', right: 18, top: 14, backgroundColor: Colors.white },
   textLabel: {
     fontFamily: 'Poppins-SemiBold',
     marginBottom: 2,

@@ -5,4 +5,5 @@ export default {
   PROFILE: 'profile',
   MAIN: 'main',
   TOPUP: 'topup',
+  REGISTER: 'register',
 };

@@ -10,7 +10,7 @@ const Styles = StyleSheet.create({
     borderBottomRightRadius: 50,
     borderBottomLeftRadius: 50,
     paddingVertical: 30,
-    backgroundColor: Colors.primary,
+    // backgroundColor: Colors.primary,
   },
   containerRegister: {
     flexDirection: 'row',
@@ -19,13 +19,14 @@ const Styles = StyleSheet.create({
   },
   logo: {
     width: 200,
-    height: 200,
+    height: 80,
+    resizeMode: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
   },
   mainContainer: {
     padding: 32,
-    marginTop: 10,
+    // marginTop: 10,
   },
   btn: {
     marginTop: 50,

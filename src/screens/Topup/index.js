@@ -56,7 +56,7 @@ const Topup = () => {
           <CustomTextInput
             onChangeText={ val => setBalance(val.toString()) }
             value={ form.stringToCurrency(balance) }
-            keyboardType='numeric'
+            keyboardType={ 'number-pad' }
             isTopup
           />
           <Button

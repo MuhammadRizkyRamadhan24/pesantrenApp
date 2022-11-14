@@ -26,6 +26,7 @@ const CustomTextInput = ({
   isScan,
   isTopup,
   itemName,
+  keyboardType,
   ...props
 }) => {
   const [state, setState] = useState({
@@ -47,52 +48,54 @@ const CustomTextInput = ({
               autoFocus={ autoFocus }
               onChangeText={ onChangeText }
               onSubmitEditing={ onSubmitEditing }
+              keyboardType={ keyboardType }
               style={ [
                 Styles.topup,
                 Styles[type || 'default'],
                 style,
               ] }
-              keyboardType={ isNumber ? 'phone-pad' : 'default' }
-              secureTextEntry={ isPassword ? state.hide : false }
               { ...props }
             />
           </View>
         </View>
         :
         <View style={ Styles.wrapInput }>
-          <TextInput
-            value={ value }
-            editable={ editable }
-            placeholder={ placeholder }
-            autoFocus={ autoFocus }
-            onChangeText={ onChangeText }
-            onSubmitEditing={ onSubmitEditing }
-            style={ [
-              editable ? Styles.input(icon) : Styles.inputDisable(icon),
-              Styles[type || 'default'],
-              style,
-            ] }
-            keyboardType={ isNumber ? 'phone-pad' : 'default' }
-            secureTextEntry={ isPassword ? state.hide : false }
-            { ...props }
-          />
-          { isPassword && (
-            <TouchableOpacity
-              activeOpacity={ 0.8 }
-              onPress={ () => setState({ ...state, hide: !state.hide }) }
-              style={ Styles.hideButton }>
-              <Feather
-                color={ Colors.grey }
-                name={ state.hide ? 'eye-off' : 'eye' }
-                size={ 20 }
-              />
-            </TouchableOpacity>
-          ) }
-          { isScan && (
-            <TouchableOpacity style={ Styles.hideButton } onPress={ () => NavigationHelper.navigate(screenName.SCAN_BARCODE, { itemName: itemName }) }>
-              <Icon name='camera' size={ 20 } color={ Colors.primary }/>
-            </TouchableOpacity>
-          ) }
+          <Text style={ { paddingLeft: 5 } }>{ placeholder }</Text>
+          <View style={ { flexDirection: 'row' } }>
+            <TextInput
+              value={ value }
+              editable={ editable }
+              placeholder={ placeholder }
+              autoFocus={ autoFocus }
+              onChangeText={ onChangeText }
+              onSubmitEditing={ onSubmitEditing }
+              style={ [
+                editable ? Styles.input(icon) : Styles.inputDisable(icon),
+                Styles[type || 'default'],
+                style,
+              ] }
+              keyboardType={ keyboardType }
+              secureTextEntry={ isPassword ? state.hide : false }
+              { ...props }
+            />
+            { isPassword && (
+              <TouchableOpacity
+                activeOpacity={ 0.8 }
+                onPress={ () => setState({ ...state, hide: !state.hide }) }
+                style={ Styles.hideButton }>
+                <Feather
+                  color={ Colors.grey }
+                  name={ state.hide ? 'eye-off' : 'eye' }
+                  size={ 20 }
+                />
+              </TouchableOpacity>
+            ) }
+            { isScan && (
+              <TouchableOpacity style={ Styles.hideButton } onPress={ () => NavigationHelper.navigate(screenName.SCAN_BARCODE, { itemName: itemName }) }>
+                <Icon name='camera' size={ 20 } color={ Colors.primary }/>
+              </TouchableOpacity>
+            ) }
+          </View>
         </View> }
     </View>
   );

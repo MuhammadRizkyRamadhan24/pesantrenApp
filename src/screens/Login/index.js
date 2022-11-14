@@ -6,8 +6,6 @@ import Images from 'consts/Images';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import form from 'helpers/form';
-import { apiRequest } from 'helpers/form';
-import endpoints from 'config/endpoints';
 import navigation from 'helpers/navigation';
 import screenName from 'config/screenName';
 import { Colors } from 'src/utils/colors';
@@ -19,23 +17,23 @@ const Login = () => {
   // const dispatch = useDispatch();
 
   const loginValidationSchema = Yup.object().shape({
-    username: form.usernamePattern,
-    password: form.passwordPattern,
+    phone: form.phonePattern,
+    pin: form.pinPattern,
   });
 
-  async function handleLogin() {
-    // console.log();
-    const val = {
-      usernamename: 'admin',
-      passwordword: 'admin',
-    };
-    try {
-      const result = await apiRequest(endpoints.login, 'post', val);
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function handleLogin() {
+  //   // console.log();
+  //   const val = {
+  //     phonename: 'admin',
+  //     pinword: 'admin',
+  //   };
+  //   try {
+  //     const result = await apiRequest(endpoints.login, 'post', val);
+  //     console.log(result);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   // const handleLoginFetch = val => {
   //   dispatch(
@@ -48,7 +46,7 @@ const Login = () => {
   return (
     <View style={ Styles.container }>
       <View style={ Styles.containerLogo }>
-        <Image source={ Images.icon } style={ Styles.logo } />
+        <Image source={ Images.iconName } style={ Styles.logo } />
       </View>
       <View style={ Styles.mainContainer }>
         <Text weight='bold' size='xl' >
@@ -56,8 +54,8 @@ const Login = () => {
         </Text>
         <Formik
           initialValues={ {
-            username: '',
-            password: '',
+            phone: '+62',
+            pin: '',
           } }
           validationSchema={ loginValidationSchema }
           onSubmit={ () => navigation.navigate(screenName.MAIN) }>
@@ -72,34 +70,36 @@ const Login = () => {
           }) => (
             <>
               <CustomTextInput
-                placeholder='Username'
-                onChangeText={ handleChange('username') }
-                onBlur={ handleBlur('username') }
-                value={ values.username }
+                placeholder='No HP'
+                onChangeText={ handleChange('phone') }
+                onBlur={ handleBlur('phone') }
+                value={ values.phone }
+                keyboardType={ 'phone-pad' }
               />
-              { errors.username && touched.username && (
-                <Text size='xxs' color={ Colors.error }>{ errors.username }</Text>
+              { errors.phone && touched.phone && (
+                <Text size='xxs' color={ Colors.error }>{ errors.phone }</Text>
               ) }
               <CustomTextInput
-                placeholder='Password'
-                onChangeText={ handleChange('password') }
-                onBlur={ handleBlur('password') }
-                value={ values.password }
+                placeholder='PIN'
+                onChangeText={ handleChange('pin') }
+                onBlur={ handleBlur('pin') }
+                value={ values.pin }
+                keyboardType={ 'number-pad' }
                 isPassword
               />
-              { errors.password && touched.password && (
-                <Text size='xxs' color={ Colors.error }>{ errors.password }</Text>
+              { errors.pin && touched.pin && (
+                <Text size='xxs' color={ Colors.error }>{ errors.pin }</Text>
               ) }
               <View style={ Styles.containerRegister }>
                 <TouchableOpacity activeOpacity={ 0.8 }>
-                  <Text size={ 'xxs' } weight={ 'medium' } >Lupa password?</Text>
+                  <Text size={ 'xxs' } weight={ 'medium' } >Lupa pin?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={ 0.8 }>
+                <TouchableOpacity onPress={ () => navigation.navigate(screenName.REGISTER) } activeOpacity={ 0.8 }>
                   <Text size={ 'xxs' } weight={ 'medium' } >Belum punya akun?</Text>
                 </TouchableOpacity>
               </View>
               <Button
-                text='Login'
+                text='Masuk'
                 mode='default'
                 style={ Styles.btn }
                 onPress={ handleSubmit }
