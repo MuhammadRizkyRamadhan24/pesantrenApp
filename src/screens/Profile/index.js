@@ -5,8 +5,10 @@ import Styles from './style';
 import { Colors } from 'src/utils/colors';
 import Images from 'consts/Images';
 
-const Profile = () => {
+import { useDispatch } from 'react-redux';
 
+const Profile = () => {
+  const dispatch = useDispatch();
   const accountMenu = [
     {
       id: 1,
@@ -19,7 +21,6 @@ const Profile = () => {
       title: 'Ganti Password',
     },
   ];
-
   const otherMenu = [
     {
       id: 1,
@@ -35,8 +36,15 @@ const Profile = () => {
       id: 3,
       icon: Images.logout,
       title: 'Keluar',
+      click: () => handleLogout(),
     },
   ];
+
+  const handleLogout = () => {
+    dispatch({
+      type: 'LOGOUT',
+    });
+  };
 
   return (
     <View style={ Styles.container }>
@@ -104,6 +112,7 @@ const Profile = () => {
           </Text>
           { otherMenu.map((v, i) => (
             <TouchableOpacity
+              onPress={ v.click }
               key={ v.id }
               activeOpacity={ 0.8 }
               style={ {
