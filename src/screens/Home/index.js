@@ -15,7 +15,6 @@ import { NavigationHelper } from 'helpers/';
 import screenName from 'config/screenName';
 import Icon from 'react-native-vector-icons/Entypo';
 
-
 const Home = () => {
   const dataMenu = [
     {

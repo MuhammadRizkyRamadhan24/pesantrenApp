@@ -3,6 +3,7 @@ import Text from './Text';
 import CustomTextInput from './TextInput';
 import Header from './Header';
 import CustomModal from './CustomModal';
+import Toast from './Toast';
 
 export {
   Button,
@@ -10,4 +11,5 @@ export {
   Header,
   CustomTextInput,
   CustomModal,
+  Toast,
 };

@@ -4,6 +4,7 @@ import { apiRequest } from 'helpers/form';
 import endpoints from 'config/endpoints';
 import { loginResp } from './actions';
 import { setLoading } from 'redux-app/misc/actions';
+import { showErrorToast } from 'components/Toast';
 
 function* sagaLoginFetch(data) {
   try {
@@ -21,8 +22,16 @@ function* sagaLoginFetch(data) {
         status: false,
       }),
     );
-    console.log(result);
     yield putResolve(loginResp(result));
+    if (result.msg !== 'success') {
+      if (typeof result.msg === 'object') {
+        showErrorToast('No HP atau PIN salah');
+      } else {
+        showErrorToast('PIN salah');
+      }
+    } else {
+      yield putResolve(loginResp(result));
+    }
   } catch (err) {
     yield putResolve(
       setLoading({
