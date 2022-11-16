@@ -63,11 +63,32 @@ const Home = () => {
     },
   ];
 
+  const cardBox = [
+    {
+      id: 1,
+      image: 'https://storage.nu.or.id/storage/post/16_9/mid/santri2_1643967254.jpg',
+      title: 'Pesantren',
+      desc: 'Lorem Ipsum Sir Dolor amet, Lorem Ipsum Sir Dolor amet Lorellkk',
+    },
+    {
+      id: 2,
+      image: 'https://gobiz.co.id/pusat-pengetahuan/wp-content/uploads/2022/03/Metode-Pembayaran-7.jpg',
+      title: 'Pembayaran',
+      desc: 'Lorem Ipsum Sir Dolor amet, Lorem Ipsum Sir Dolor amet Lorellkk',
+    },
+    {
+      id: 3,
+      image: 'https://assets.tokko.io/b727ee1a-22ef-48eb-b596-855cd34001dc/products/images/7ea3e7d0-0a7b-460f-beab-dcc8d536a88e',
+      title: 'Topup',
+      desc: 'Lorem Ipsum Sir Dolor amet, Lorem Ipsum Sir Dolor amet Lorellkk',
+    },
+  ];
+
   const windowWidth = Dimensions.get('window').width;
 
   return (
     <View style={ Styles.container }>
-      <ScrollView nestedScrollEnabled={ true } stickyHeaderIndices={ [1] }>
+      <ScrollView showsVerticalScrollIndicator={ false } nestedScrollEnabled={ true } stickyHeaderIndices={ [1] }>
         <View
           style={ Styles.containerNameUser }>
           <Text size='s' color= { Colors.white } >
@@ -223,8 +244,23 @@ const Home = () => {
             />
           </ScrollView>
         </View>
+        <ScrollView horizontal={ true } style={ { marginVertical: 20, marginLeft: 15 } } showsHorizontalScrollIndicator={ false }>
+          <FlatList
+            data={ cardBox }
+            scrollEnabled={ true }
+            contentContainerStyle={ { flexDirection: 'row' } }
+            renderItem={ ({ item }) => (
+              <TouchableOpacity key={ item.id } style={ { backgroundColor: Colors.lightGrey, width: 220,  elevation: 0.5, borderRadius: 10, marginHorizontal: 5 } }>
+                <Image style={ { width: '100%', height: 100, resizeMode: 'cover' } } source={ { uri : `${item.image}` } } />
+                <View style={ { padding: 10 } }>
+                  <Text style={ { maxWidth: 200 } } size='xs' weight='semibold'>{ item.title }</Text>
+                  <Text maxLines={ 2 } style={ { maxWidth: 200 } }>{ item.desc }</Text>
+                </View>
+              </TouchableOpacity>
+            ) }
+          />
+        </ScrollView>
       </ScrollView>
-      
     </View>
       
   );
