@@ -5,10 +5,12 @@ import Styles from './style';
 import { Colors } from 'src/utils/colors';
 import Images from 'consts/Images';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth.auth);
+
   const accountMenu = [
     {
       id: 1,
@@ -60,13 +62,10 @@ const Profile = () => {
           size='m'
           weight='medium'
           color={ Colors.white }>
-          John Doe
+          { auth?.full_name }
         </Text>
         <Text size='s' color={ Colors.white } >
-          08123456678
-        </Text>
-        <Text size='s' color={ Colors.white } >
-          email@email.com
+          { auth?.phone }
         </Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={ false }>
@@ -136,7 +135,7 @@ const Profile = () => {
         <View
           style={ [Styles.containerMenu, Styles.containerDetail] }>
           <Text weight='semibold' size='m' color={ Colors.ironsideGrey }>
-              Qartu
+              E-Qartu
           </Text>
           <Text weight='italic' color={ Colors.ironsideGrey }>
             Versi Aplikasi - 0.1

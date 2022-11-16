@@ -14,8 +14,13 @@ import { Colors } from 'src/utils/colors';
 import { NavigationHelper } from 'helpers/';
 import screenName from 'config/screenName';
 import Icon from 'react-native-vector-icons/Entypo';
+import form from 'helpers/form';
+
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+  const auth = useSelector(state => state.auth.auth);
+
   const dataMenu = [
     {
       id: 1,
@@ -74,7 +79,7 @@ const Home = () => {
             weight='semibold'
             color= { Colors.white }
             style={ Styles.maxWidthTextBottom }>
-            John Doe
+            { auth?.full_name }
           </Text>
         </View>
 
@@ -89,7 +94,7 @@ const Home = () => {
             weight='semibold'
             color={ Colors.white }
             style={ Styles.maxWidthTextBottom }>
-            Rp 2.000.000,00
+            Rp { form.stringToCurrency(auth?.saldo) }
           </Text>
         </View>
         <View
