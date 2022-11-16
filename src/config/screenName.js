@@ -6,4 +6,5 @@ export default {
   MAIN: 'main',
   TOPUP: 'topup',
   REGISTER: 'register',
+  OTP: 'Otp',
 };

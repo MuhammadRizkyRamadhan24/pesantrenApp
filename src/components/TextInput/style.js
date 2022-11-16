@@ -29,7 +29,7 @@ const Styles = StyleSheet.create({
     fontSize: 12,
     height: 48,
     flex: 1,
-    paddingLeft: icon ? 60 : 25,
+    paddingLeft: icon ? 50 : 15,
   }),
   inputDisable: icon => ({
     borderColor: Colors.grey2,
@@ -82,6 +82,22 @@ const Styles = StyleSheet.create({
   textLabel: {
     fontFamily: 'Poppins-SemiBold',
     marginBottom: 2,
+  },
+  inputPhone: {
+    borderColor: Colors.borderInput,
+    backgroundColor: Colors.white,
+    fontFamily: 'Poppins-Regular',
+    color: Colors.black,
+    paddingRight: 25,
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderRadius: 10,
+    // borderWidth: 1,
+    borderBottomWidth: 1,
+    fontSize: 12,
+    height: 48,
+    flex: 1,
+    paddingLeft: 15,
   },
 });
 

@@ -6,6 +6,7 @@ import Login from 'screens/Login';
 import BottomTabNav from 'components/BottomTab';
 import Topup from 'screens/Topup';
 import Register from 'screens/Register';
+import Otp from 'screens/Otp';
 
 const screenList = (name, component, options = {}) => ({
   name,
@@ -21,6 +22,7 @@ const screenRouters = [
   screenList(screenName.REGISTER, Register),
   screenList(screenName.MAIN, BottomTabNav),
   screenList(screenName.TOPUP, Topup),
+  screenList(screenName.OTP, Otp),
 ];
 
 export default screenRouters;

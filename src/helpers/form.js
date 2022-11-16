@@ -168,10 +168,22 @@ const stringToCurrency = s => {
   return s.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 };
 
+const stringToPhoneNumber = s => {
+  s = s.toString().replace(/[^\d]/g, '');
+  s = s.toString().replace(/^0/, '62');
+  return s.replace(/(\d{4})(\d{4})(\d{2,4})/, '$1-$2-$3');
+};
+
+const phoneNumberToString = s => {
+  return s.toString().replace(/[^\d]/g, '');
+};
+
 export default {
   namePattern,
   pinPattern,
   phonePattern,
   dateFormat,
   stringToCurrency,
+  stringToPhoneNumber,
+  phoneNumberToString,
 };

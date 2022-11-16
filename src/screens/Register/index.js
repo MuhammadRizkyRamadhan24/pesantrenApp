@@ -8,12 +8,15 @@ import * as Yup from 'yup';
 import form from 'helpers/form';
 import { Colors } from 'src/utils/colors';
 import Dispatches from 'consts/Dispatches';
+import navigation from 'helpers/navigation';
+import screenName from 'config/screenName';
 
 import { registerFetch } from 'redux-app/auth/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Register = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [phone, setPhone] = useState('');
 
   const dispatch = useDispatch();
   const loading = useSelector(state => state.misc.loading);
@@ -25,16 +28,15 @@ const Register = () => {
     pin: form.pinPattern,
     rewritePin: form.pinPattern,
   });
-  
-  // () => navigation.navigate(screenName.MAIN)
 
   const handleRegisterFetch = val => {
     if (val.pin === val.rewritePin) {
       const value = {
         full_name : val.name,
-        phone : val.phone,
+        phone : form.phoneNumberToString(val.phone),
         password : val.pin,
       };
+      setPhone(value?.phone);
       dispatch(
         registerFetch({
           data: value,
@@ -56,6 +58,7 @@ const Register = () => {
       response: '',
     });
     setModalVisible(false);
+    navigation.navigate(screenName.OTP, { phone: phone });
   };
   
 
@@ -90,11 +93,12 @@ const Register = () => {
             }) => (
               <>
                 <CustomTextInput
+                  isPhonenumber
                   placeholder='No HP'
                   onChangeText={ handleChange('phone') }
                   onBlur={ handleBlur('phone') }
                   keyboardType={ 'phone-pad' }
-                  value={ values.phone }
+                  value={ form.stringToPhoneNumber(values.phone) }
                 />
                 { errors.phone && touched.phone && (
                   <Text size='xxs' color={ Colors.error }>{ errors.phone }</Text>

@@ -24,37 +24,16 @@ const Login = () => {
 
   const handleLoginFetch = val => {
     const value = {
-      phone: val.phone,
+      phone: form.phoneNumberToString(val.phone),
       password: val.pin,
     };
+    // console.log(value);
     dispatch(
       loginFetch({
         data: value,
       }),
     );
   };
-
-  // async function handleLogin() {
-  //   // console.log();
-  //   const val = {
-  //     phonename: 'admin',
-  //     pinword: 'admin',
-  //   };
-  //   try {
-  //     const result = await apiRequest(endpoints.login, 'post', val);
-  //     console.log(result);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  // const handleLoginFetch = val => {
-  //   dispatch(
-  //     loginFetch({
-  //       data: val,
-  //     }),
-  //   );
-  // };
 
   return (
     <View style={ Styles.container }>
@@ -83,10 +62,11 @@ const Login = () => {
           }) => (
             <>
               <CustomTextInput
+                isPhonenumber
                 placeholder='No HP'
                 onChangeText={ handleChange('phone') }
                 onBlur={ handleBlur('phone') }
-                value={ values.phone }
+                value={ form.stringToPhoneNumber(values.phone) }
                 keyboardType={ 'numeric' }
               />
               { errors.phone && touched.phone && (
