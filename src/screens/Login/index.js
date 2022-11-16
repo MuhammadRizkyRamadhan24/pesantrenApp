@@ -17,8 +17,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.misc.loading);
 
-  console.log(loading);
-
   const loginValidationSchema = Yup.object().shape({
     phone: form.phonePattern,
     pin: form.pinPattern,

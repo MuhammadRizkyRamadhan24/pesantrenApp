@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, ScrollView } from 'react-native';
-import { Text, CustomTextInput, Button } from 'components/';
+import { Text, CustomTextInput, Button, CustomModal } from 'components/';
 import Styles from './style';
 import Images from 'consts/Images';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import form from 'helpers/form';
-import navigation from 'helpers/navigation';
-import screenName from 'config/screenName';
 import { Colors } from 'src/utils/colors';
+import Dispatches from 'consts/Dispatches';
+
+import { registerFetch } from 'redux-app/auth/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Register = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.misc.loading);
+  const messageRegister = useSelector(state => state.auth.messageRegister);
 
   const registerValidationSchema = Yup.object().shape({
     phone: form.phonePattern,
@@ -18,6 +25,39 @@ const Register = () => {
     pin: form.pinPattern,
     rewritePin: form.pinPattern,
   });
+  
+  // () => navigation.navigate(screenName.MAIN)
+
+  const handleRegisterFetch = val => {
+    if (val.pin === val.rewritePin) {
+      const value = {
+        full_name : val.name,
+        phone : val.phone,
+        password : val.pin,
+      };
+      dispatch(
+        registerFetch({
+          data: value,
+        }),
+      );
+    }
+  };
+
+  useEffect(() => {
+    // console.log(messageRegister, 'register');
+    if (messageRegister === 'success') {
+      setModalVisible(true);
+    }
+  }, [messageRegister]);
+
+  const buttonModalFunc = () => {
+    dispatch({
+      type: Dispatches.REGISTER_RESPONSE,
+      response: '',
+    });
+    setModalVisible(false);
+  };
+  
 
   return (
     <View style={ Styles.container }>
@@ -38,7 +78,7 @@ const Register = () => {
               rewritePin:'',
             } }
             validationSchema={ registerValidationSchema }
-            onSubmit={ () => navigation.navigate(screenName.MAIN) }>
+            onSubmit={ handleRegisterFetch }>
             { ({
               handleChange,
               handleBlur,
@@ -105,7 +145,20 @@ const Register = () => {
           </Formik>
         </View>
       </ScrollView>
-        
+      <CustomModal
+        modalVisible= { modalVisible }
+        type='default'
+        titleOne='Register Berhasil'
+        titleTwo='Silahkan Cek WA anda untuk mendapatkan kode OTP'
+        textBtn='Oke'
+        onPress={ buttonModalFunc }
+        btn
+      />
+      <CustomModal
+        modalVisible= { !!loading.registerFetch ?? false }
+        type='loading'
+        titleTwo='Tunggu Sebentar...'
+      />
       { /* </KeyboardAvoidingView> */ }
     </View>
   );

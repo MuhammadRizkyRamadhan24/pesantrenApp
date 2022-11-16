@@ -43,9 +43,9 @@ const CustomModal = ({
             <React.Fragment>
               <Image
                 source={ Images.success }
-                style={ { width: 63, height: 59, marginBottom: 20 } }
+                style={ { width: 60, height: 60, marginBottom: 20 } }
               />
-              <Text size='xs' color={ Colors.grey } style={ Styles.text }>
+              <Text size='s' weight='medium' color={ Colors.grey } style={ [Styles.text, { marginBottom: 5 }] }>
                 { titleOne }
               </Text>
               <Text size='xs' color={ Colors.grey } style={ Styles.text }>
@@ -117,6 +117,7 @@ const CustomModal = ({
             </React.Fragment>
           ) }
         </View>
+        
       </View>
     </Modal>
   );

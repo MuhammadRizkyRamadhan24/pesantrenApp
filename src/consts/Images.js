@@ -29,4 +29,5 @@ export default {
   addCard: require('../assets/icons/addCard.png'),
   deleteCard: require('../assets/icons/deleteCard.png'),
   blockCard: require('../assets/icons/blockCard.png'),
+  success: require('../assets/icons/success.png'),
 };

@@ -10,6 +10,11 @@ export default {
     url: '/login',
     contentType: json,
   },
+  register: {
+    baseUrl,
+    url: '/register',
+    contentType: json,
+  },
   // getHacbNo: ({ HACB_ORIGIN }) => ({
   //   baseUrl,
   //   url: '/megahub/handovergetnohacb',

@@ -2,6 +2,7 @@ import { Dispatches } from 'src/consts/index';
 
 const initialState = {
   auth: [],
+  messageRegister: '',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const authReducer = (state = initialState, action) => {
     return {
       ...state,
       auth: action.response,
+    };
+  }
+  case Dispatches.REGISTER_RESPONSE: {
+    return {
+      ...state,
+      messageRegister: action.response,
     };
   }
   case 'LOGOUT': {
