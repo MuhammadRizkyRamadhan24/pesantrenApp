@@ -134,9 +134,7 @@ const Profile = () => {
         </View>
         <View
           style={ [Styles.containerMenu, Styles.containerDetail] }>
-          <Text weight='semibold' size='m' color={ Colors.ironsideGrey }>
-              E-Qartu
-          </Text>
+          <Image style={ Styles.icon } source={ Images.iconName } />
           <Text weight='italic' color={ Colors.ironsideGrey }>
             Versi Aplikasi - 0.1
           </Text>

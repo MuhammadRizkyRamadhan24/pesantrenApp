@@ -27,6 +27,11 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  icon : {
+    width: 100,
+    height: 60,
+    resizeMode: 'center',
+  },
 });
 
 export default Styles;
