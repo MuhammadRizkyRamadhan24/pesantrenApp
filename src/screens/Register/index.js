@@ -31,11 +31,13 @@ const Register = () => {
 
   const handleRegisterFetch = val => {
     if (val.pin === val.rewritePin) {
+      val.phone = form.stringToPhoneNumber(val.phone);
       const value = {
         full_name : val.name,
         phone : form.phoneNumberToString(val.phone),
         password : val.pin,
       };
+      console.log(value.phone);
       setPhone(value?.phone);
       dispatch(
         registerFetch({
@@ -58,7 +60,7 @@ const Register = () => {
       response: '',
     });
     setModalVisible(false);
-    navigation.navigate(screenName.OTP, { phone: phone });
+    navigation.replace(screenName.OTP, { phone: phone });
   };
   
 
@@ -98,7 +100,7 @@ const Register = () => {
                   onChangeText={ handleChange('phone') }
                   onBlur={ handleBlur('phone') }
                   keyboardType={ 'phone-pad' }
-                  value={ form.stringToPhoneNumber(values.phone) }
+                  value={ values.phone.length >= 10 ? form.stringToPhoneNumber(values.phone) : values.phone }
                 />
                 { errors.phone && touched.phone && (
                   <Text size='xxs' color={ Colors.error }>{ errors.phone }</Text>

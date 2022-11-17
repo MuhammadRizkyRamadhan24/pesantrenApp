@@ -21,7 +21,7 @@ const Router = () => {
       // Login
       navigation.replace(screenName.LOGIN);
     }
-  }, [auth]);
+  }, [auth.accessToken]);
 
   return (
     <NavigationContainer

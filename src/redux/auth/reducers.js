@@ -3,6 +3,8 @@ import { Dispatches } from 'src/consts/index';
 const initialState = {
   auth: [],
   messageRegister: '',
+  messageActivateUser: '',
+  messageReqOtp: '',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -19,9 +21,24 @@ const authReducer = (state = initialState, action) => {
       messageRegister: action.response,
     };
   }
+  case Dispatches.ACTIVATE_USER_RESPONSE: {
+    return {
+      ...state,
+      messageActivateUser: action.response,
+    };
+  }
+  case Dispatches.REQ_OTP_RESPONSE: {
+    return {
+      ...state,
+      messageReqOtp: action.response,
+    };
+  }
   case 'LOGOUT': {
     return {
       auth: [],
+      messageRegister: '',
+      messageActivateUser: '',
+      messageReqOtp: '',
     };
   }
   default:

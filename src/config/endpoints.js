@@ -15,6 +15,16 @@ export default {
     url: '/register',
     contentType: json,
   },
+  activateUser: {
+    baseUrl,
+    url: '/activate',
+    contentType: json,
+  },
+  requestotp: {
+    baseUrl,
+    url: '/requestotp',
+    contentType: json,
+  },
   // getHacbNo: ({ HACB_ORIGIN }) => ({
   //   baseUrl,
   //   url: '/megahub/handovergetnohacb',

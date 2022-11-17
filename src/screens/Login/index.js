@@ -23,11 +23,13 @@ const Login = () => {
   });
 
   const handleLoginFetch = val => {
+    console.log(val.phone);
+    val.phone = form.stringToPhoneNumber(val.phone);
     const value = {
       phone: form.phoneNumberToString(val.phone),
       password: val.pin,
     };
-    // console.log(value);
+    console.log(value);
     dispatch(
       loginFetch({
         data: value,
@@ -66,7 +68,7 @@ const Login = () => {
                 placeholder='No HP'
                 onChangeText={ handleChange('phone') }
                 onBlur={ handleBlur('phone') }
-                value={ form.stringToPhoneNumber(values.phone) }
+                value={ values.phone.length >= 10 ? form.stringToPhoneNumber(values.phone) : values.phone }
                 keyboardType={ 'numeric' }
               />
               { errors.phone && touched.phone && (

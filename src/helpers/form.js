@@ -169,15 +169,16 @@ const stringToCurrency = s => {
 };
 
 const stringToPhoneNumber = s => {
-  s = s.toString().replace(/[^\d]/g, '');
-  s = s.toString().replace(/^0/, '62');
-  return s.replace(/(\d{4})(\d{4})(\d{2,4})/, '$1-$2-$3');
+  s = s.toString().replace(/^0/, '+62 ');
+  s = s.toString().replace(/^62/, '+62 ');
+  s = s.toString().replace(/[a-zA-Z]/g, '');
+  return s.replace(/(\d{3})(\d{4})(\d{2,5})/, '$1-$2-$3');
 };
 
 const phoneNumberToString = s => {
   return s.toString().replace(/[^\d]/g, '');
 };
-
+0;
 export default {
   namePattern,
   pinPattern,

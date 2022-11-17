@@ -63,42 +63,23 @@ const CustomTextInput = ({
         <View style={ Styles.wrapInput }>
           <Text style={ { paddingLeft: 5 } }>{ placeholder }</Text>
           <View style={ { flexDirection: 'row' } }>
-            { isPhonenumber ?
-              <View style={ { justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: '100%' } }>
-                <Text weight='semibold' size='xs' style={ { position: 'absolute', zIndex: 999, left: 3 } }>+</Text>
-                <TextInput
-                  value={ value }
-                  editable={ editable }
-                  placeholder={ placeholder }
-                  autoFocus={ autoFocus }
-                  onChangeText={ onChangeText }
-                  onSubmitEditing={ onSubmitEditing }
-                  style={ [
-                    Styles.inputPhone,
-                    Styles[type || 'default'],
-                    style,
-                  ] }
-                  keyboardType={ keyboardType }
-                  { ...props }
-                />
-              </View>
-              :
-              <TextInput
-                value={ value }
-                editable={ editable }
-                placeholder={ placeholder }
-                autoFocus={ autoFocus }
-                onChangeText={ onChangeText }
-                onSubmitEditing={ onSubmitEditing }
-                style={ [
-                  editable ? Styles.input(icon) : Styles.inputDisable(icon),
-                  Styles[type || 'default'],
-                  style,
-                ] }
-                keyboardType={ keyboardType }
-                secureTextEntry={ isPassword ? state.hide : false }
-                { ...props }
-              /> }
+            
+            <TextInput
+              value={ value }
+              editable={ editable }
+              placeholder={ placeholder }
+              autoFocus={ autoFocus }
+              onChangeText={ onChangeText }
+              onSubmitEditing={ onSubmitEditing }
+              style={ [
+                editable ? Styles.input(icon) : Styles.inputDisable(icon),
+                Styles[type || 'default'],
+                style,
+              ] }
+              keyboardType={ keyboardType }
+              secureTextEntry={ isPassword ? state.hide : false }
+              { ...props }
+            />
             { isPassword && (
               <TouchableOpacity
                 activeOpacity={ 0.8 }
