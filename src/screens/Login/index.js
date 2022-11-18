@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { Text, CustomTextInput, Button, CustomModal } from 'components/';
 import Styles from './style';
@@ -9,13 +9,17 @@ import form from 'helpers/form';
 import navigation from 'helpers/navigation';
 import screenName from 'config/screenName';
 import { Colors } from 'src/utils/colors';
+import Dispatches from 'consts/Dispatches';
 
-import { loginFetch } from 'redux-app/auth/actions';
+import { loginFetch, reqOtpFetch } from 'redux-app/auth/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Login = () => {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.misc.loading);
+  const auth = useSelector(state => state.auth.auth);
+  const [phone, setPhone] = useState('');
+  console.log(phone, 'phone');
 
   const loginValidationSchema = Yup.object().shape({
     phone: form.phonePattern,
@@ -23,19 +27,40 @@ const Login = () => {
   });
 
   const handleLoginFetch = val => {
-    console.log(val.phone);
     val.phone = form.stringToPhoneNumber(val.phone);
     const value = {
       phone: form.phoneNumberToString(val.phone),
       password: val.pin,
     };
-    console.log(value);
+    setPhone(value?.phone);
     dispatch(
       loginFetch({
         data: value,
       }),
     );
   };
+
+  useEffect(() => {
+    if (auth.msg === 'user inactive, validated otp') {
+      dispatch(
+        reqOtpFetch({
+          data: { phone: phone },
+        }),
+      );
+      navigation.replace(screenName.OTP, { phone: phone });
+      dispatch({
+        type: Dispatches.LOGIN_RESPONSE,
+        response: [],
+      });
+    }
+  }, [auth.msg]);
+
+  useEffect(() => {
+    dispatch({
+      type: Dispatches.LOGIN_RESPONSE,
+      response: [],
+    });
+  }, []);
 
   return (
     <View style={ Styles.container }>

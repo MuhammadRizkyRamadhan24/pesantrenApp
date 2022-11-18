@@ -27,7 +27,8 @@ function* sagaLoginFetch(data) {
       if (typeof result.msg === 'object') {
         showErrorToast('No HP atau PIN salah');
       } else if (result.msg === 'user inactive, validated otp') {
-        showErrorToast('User Belum Aktif');
+        yield putResolve(loginResp(result));
+        showErrorToast('User belum aktif, Silahkan aktifkan');
       } else {
         showErrorToast('No HP atau PIN salah');
       }

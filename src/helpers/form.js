@@ -171,8 +171,8 @@ const stringToCurrency = s => {
 const stringToPhoneNumber = s => {
   s = s.toString().replace(/^0/, '+62 ');
   s = s.toString().replace(/^62/, '+62 ');
-  s = s.toString().replace(/[a-zA-Z]/g, '');
-  return s.replace(/(\d{3})(\d{4})(\d{2,5})/, '$1-$2-$3');
+  return s.toString().replace(/[a-zA-Z]/g, '');
+  // return s.replace(/(\d{3})(\d{4})(\d{2,5})/, '$1-$2-$3');
 };
 
 const phoneNumberToString = s => {
