@@ -1,6 +1,6 @@
 import { Image, ScrollView, View, TouchableOpacity } from 'react-native';
-import { Text } from 'components/index';
-import React from 'react';
+import { Text, CustomModal } from 'components/index';
+import React, { useState } from 'react';
 import Styles from './style';
 import { Colors } from 'src/utils/colors';
 import Images from 'consts/Images';
@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const Profile = () => {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const accountMenu = [
     {
@@ -38,7 +39,7 @@ const Profile = () => {
       id: 3,
       icon: Images.logout,
       title: 'Keluar',
-      click: () => handleLogout(),
+      click: () => setModalVisible(true),
     },
   ];
 
@@ -46,6 +47,7 @@ const Profile = () => {
     dispatch({
       type: 'LOGOUT',
     });
+    setModalVisible(false);
   };
 
   return (
@@ -146,6 +148,16 @@ const Profile = () => {
           </Text>
         </View>
       </ScrollView>
+      <CustomModal
+        type = 'choose'
+        modalVisible={ modalVisible }
+        titleOne='Apakah anda ingin keluar?'
+        onCancel={ () => setModalVisible(false) }
+        request={ () => setModalVisible(false) }
+        onPress={ () => handleLogout() }
+        textBtnCancel='Tidak'
+        textBtnOk='Iya'
+      />
     </View>
   );
 };

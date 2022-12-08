@@ -46,7 +46,7 @@ export const apiRequest = (
   }
 
   const token = store.getState()?.auth?.auth?.accessToken;
-  // console.log(token, 'token');
+  console.log(token, 'token');
 
   if (token) {
     headers = {

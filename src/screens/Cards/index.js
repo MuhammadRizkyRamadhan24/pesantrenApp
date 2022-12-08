@@ -4,6 +4,7 @@ import Styles from './style';
 import { Text } from 'components/index';
 import { Colors } from 'src/utils/colors';
 import Images from 'consts/Images';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Cards = () => {
   const dataMenu = [
@@ -25,7 +26,8 @@ const Cards = () => {
   ];
   return (
     <View style={ Styles.container }>
-      <View
+      <LinearGradient
+        start={ { x: 0, y: 0 } } end={ { x: 1, y: 0 } } colors={ ['#08519e', '#0283d9', '#40d09c'] }
         style={ Styles.containerTop }>
         <Image
           source={ Images.iconName }
@@ -55,7 +57,7 @@ const Cards = () => {
             </TouchableOpacity>
           )) }
         </View>
-      </View>
+      </LinearGradient>
     </View>
   );
 };

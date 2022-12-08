@@ -16,4 +16,5 @@ export const Colors = {
   tealblue: '#043463',
   scooter: '#30c6d3',
   fountainblue: '#5aa2c6',
+  yellow: '#FFAE42',
 };

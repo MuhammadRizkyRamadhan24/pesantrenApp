@@ -7,8 +7,8 @@ const Styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   containerTop: {
-    backgroundColor: Colors.primary,
-    paddingTop: 20,
+    // backgroundColor: Colors.primary,
+    paddingTop: 40,
     paddingHorizontal: 20,
     paddingBottom: 30,
     borderBottomLeftRadius: 50,

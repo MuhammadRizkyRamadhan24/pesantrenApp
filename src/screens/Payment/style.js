@@ -5,15 +5,16 @@ const Styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  containerNameUser: {
+    backgroundColor: Colors.white,
+  },
   linearGradient: {
     flex: 1,
     height:60,
   },
-  containerNameUser: {
-    backgroundColor: Colors.white,
-  },
   containerBottom: {
-    paddingBottom: 5,
+    paddingHorizontal: 20,
+    paddingVertical : 20,
     backgroundColor: Colors.white,
     elevation: 2,
   },
@@ -22,7 +23,8 @@ const Styles = StyleSheet.create({
     width: '100%',
   },
   containerCoreMenu: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },

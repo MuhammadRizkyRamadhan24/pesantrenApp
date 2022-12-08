@@ -11,55 +11,79 @@ import { Text } from 'components/';
 import Styles from './style';
 import Images from 'consts/Images';
 import { Colors } from 'src/utils/colors';
-import { NavigationHelper } from 'helpers/';
-import screenName from 'config/screenName';
-import Icon from 'react-native-vector-icons/Entypo';
-import form from 'helpers/form';
-
 import { useSelector } from 'react-redux';
+import form from 'helpers/form';
+import LinearGradient from 'react-native-linear-gradient';
+import Carousel from 'react-native-reanimated-carousel';
 
 const Home = () => {
   const auth = useSelector(state => state.auth.auth);
 
-  const dataMenu = [
+  // async function handleLogin() {
+  //   try {
+  //     const result = await apiRequest(endpoints.getDetailUser, 'post');
+  //     console.log(result);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   handleLogin();
+  // }, []);
+
+  const cardStudent = [
     {
       id: 1,
-      icon: Images.topup,
-      title: 'Topup',
-      click: () => NavigationHelper.navigate(screenName.TOPUP),
+      name: 'Muhammad John Doe',
+      nisn: '3013 1172 2123 1111',
+      image: 'https://blog-pixomatic.s3.appcnt.com/image/22/01/26/61f166e1377d4/_orig/pixomatic_1572877223091.png',
     },
     {
       id: 2,
-      icon: Images.card,
-      title: 'Isi Kartu',
+      name: 'Ahmad John John',
+      nisn: '3013 1172 2123 1191',
+      image: 'https://media.istockphoto.com/id/1318482009/photo/young-woman-ready-for-job-business-concept.jpg?b=1&s=170667a&w=0&k=20&c=qr9IZO49bYbal9ID9FzvVDe_V6GdcZhY9a3eGbeL4E0=',
     },
     {
       id: 3,
-      icon: Images.transfer,
-      title: 'Transfer',
+      name: 'Ahmad John Doe',
+      nisn: '3013 1112 2123 1191',
+      image: 'https://images.squarespace-cdn.com/content/v1/5cf0d08d5fc69d000172462a/1636100249202-5NY98C6ASRIFFPO9GZTU/Tom+Professional+Business+Headshot.jpg?format=500w',
     },
   ];
 
-  const dataFitur = [
+  const menu = [
     {
       id: 1,
-      icon: Images.phone,
-      title: 'Pulsa',
+      name: 'Akademis',
     },
     {
       id: 2,
-      icon: Images.water,
-      title: 'PDAM',
+      name: 'Non Akademis',
     },
     {
       id: 3,
-      icon: Images.flash,
-      title: 'Listrik',
+      name: 'Report',
     },
     {
       id: 4,
-      icon: Images.menu,
-      title: 'Lainya',
+      name: 'Jadwal',
+    },
+  ];
+
+  const promo = [
+    {
+      id: 1,
+      image: 'https://img.freepik.com/free-vector/mega-sale-offers-banner-template_1017-31299.jpg?w=2000',
+    },
+    {
+      id: 2,
+      image: 'https://img.freepik.com/premium-vector/sale-promotion-banner-template_74379-177.jpg',
+    },
+    {
+      id: 3,
+      image: 'https://www.shutterstock.com/image-vector/promo-merdeka-banner-design-vector-600w-1408869659.jpg',
     },
   ];
 
@@ -88,178 +112,194 @@ const Home = () => {
 
   return (
     <View style={ Styles.container }>
-      <ScrollView showsVerticalScrollIndicator={ false } nestedScrollEnabled={ true } stickyHeaderIndices={ [1] }>
+      <ScrollView showsVerticalScrollIndicator={ false } nestedScrollEnabled={ true } stickyHeaderIndices={ [0] }>
         <View
           style={ Styles.containerNameUser }>
-          <Text size='s' color= { Colors.white } >
-            Selamat Datang ,
-          </Text>
-          <Text
-            maxLines={ 1 }
-            size='m'
-            weight='semibold'
-            color= { Colors.white }
-            style={ Styles.maxWidthTextBottom }>
-            { auth?.full_name }
-          </Text>
+          <LinearGradient start={ { x: 0, y: 0 } } end={ { x: 1, y: 0 } } colors={ ['#08519e', '#0283d9', '#40d09c'] } style={ Styles.linearGradient } />
+          <View style={ {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingVertical: 10,
+          } }>
+            <Image source={ Images.iconName } style={ { width: 140, height: 55, resizeMode:'center' } }/>
+          </View>
         </View>
 
-        <View
-          style={ Styles.containerBalanceUser }>
-          <Text size='s' color={ Colors.white }>
-            Balance
-          </Text>
-          <Text
-            maxLines={ 1 }
-            size='xl'
-            weight='semibold'
-            color={ Colors.white }
-            style={ Styles.maxWidthTextBottom }>
-            Rp { form.stringToCurrency(auth?.saldo) }
-          </Text>
-        </View>
-        <View
-          style={ Styles.addOnContainerTop }
-        />
         <View style={ Styles.containerBottom }>
+          <View style={ { flexDirection:'row', marginHorizontal: 40 } }>
+            <Text color={ Colors.primary }  style={ { width: '45%' } } size='m' maxLines={ 1 }>Selamat Datang,</Text>
+            <Text color={ Colors.primary }  style={ { width: '55%' } } size='m' maxLines={ 1 } weight='semibold'>{ auth.full_name }</Text>
+          </View>
+          { /* Konten Atas */ }
           <View>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={ false }
-              style={ Styles.containerCard }>
-              <TouchableOpacity
-                activeOpacity={ 0.95 }
-                style={ {
-                  marginHorizontal: 5,
-                  backgroundColor: Colors.lightGrey,
-                  width: windowWidth - 50,
-                  flex: 1,
-                  height: 150,
-                  borderRadius: 10,
-                  elevation: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                } }>
-                <Icon
-                  name='v-card'
-                  size={ 40 }
-                  color={ Colors.primary }
-                  style={ { paddingBottom: 5 } }
-                />
-                <Text weight='semibold' color={ Colors.darkerBlack }>
-                Belum ada kartu aktif,
-                </Text>
-                <Text color={ Colors.darkerBlack } weight='semibold'>
-                ketuk untuk menambahkan kartu
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={ 0.9 }
-                style={ {
-                  marginHorizontal: 5,
-                  backgroundColor: Colors.lightGrey,
-                  width: windowWidth - 50,
-                  flex: 1,
-                  height: 150,
-                  borderRadius: 10,
-                  elevation: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                } }>
-                <Icon
-                  name='v-card'
-                  size={ 40 }
-                  color={ '#B6B6B6' }
-                  style={ { paddingBottom: 5 } }
-                />
-                <Text weight='semibold' color={ Colors.ironsideGrey }>
-                Belum ada kartu aktif,
-                </Text>
-                <Text color={ Colors.ironsideGrey } weight='semibold'>
-                ketuk untuk menambahkan kartu
-                </Text>
-              </TouchableOpacity>
-            </ScrollView>
-          </View>
-          <View
-            style={ Styles.containerCoreMenu }>
-            { dataMenu.map((d, i) => (
-              <TouchableOpacity key={ d.id } activeOpacity={ 0.8 } onPress={ d.click }>
-                <View
-                  style={ {
-                    backgroundColor: Colors.primary,
-                    width: 70,
-                    height: 70,
-                    borderRadius: 70,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  } }>
-                  <Image source={ d.icon } style={ { width: 34, height: 34 } } />
-                </View>
-                <Text
-                  size={ 'xs' }
-                  weight={ 'medium' }
-                  style={ { textAlign: 'center', paddingTop: 12 } }
-                  color={ Colors.darkerBlack }>
-                  { d.title }
-                </Text>
-              </TouchableOpacity>
-            )) }
-          </View>
-          <ScrollView horizontal={ true }>
-            <FlatList
-              scrollEnabled={ false }
-              contentContainerStyle={ Styles.containerSecondaryMenu }
-              numColumns={ 4 }
-              data={ dataFitur }
-              renderItem={ ({ item }) => (
+            <Carousel
+              mode='parallax'
+              loop
+              width={ windowWidth }
+              height={ windowWidth / 2.5 }
+              // autoPlay={ true }
+              data={ promo }
+              scrollAnimationDuration={ 1000 }
+              renderItem={ ({ item, index }) => (
                 <TouchableOpacity
-                  key={ item.id }
                   activeOpacity={ 0.8 }
                   style={ {
-                    width: (windowWidth - 40) / 4,
+                    flex: 1,
                     justifyContent: 'center',
-                    alignItems: 'center',
-                  } }>
-                  <View
+                  } }
+                >
+                  <Image
+                    source={ { uri: `${item.image}` } }
                     style={ {
-                      backgroundColor: Colors.lightGrey,
-                      width: 56,
-                      height: 56,
-                      borderRadius: 60,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    } }>
-                    <Image source={ item.icon } style={ { width: 28, height: 28 } } />
+                      width: '100%',
+                      height:'100%',
+                      hadowColor: '#000',
+                      shadowOffset: { width: 1, height: 1 },
+                      shadowOpacity:  0.4,
+                      shadowRadius: 3,
+                      elevation: 2.5,
+                      borderRadius: 10,
+                      resizeMode:'cover',
+                    } }
+                  />
+                </TouchableOpacity>
+              ) }
+            />
+          </View>
+
+          <ScrollView style={ { padding: 20 } } horizontal>
+            <FlatList
+              data={ menu }
+              contentContainerStyle={ {
+                alignItems: 'center',
+              } }
+              numColumns={ 2 }
+              renderItem={ ({ item }) =>
+                <TouchableOpacity
+                  activeOpacity={ 0.9 }
+                  style={ {
+                    width: (windowWidth / 2) - 30,
+                    height: 70,
+                    backgroundColor: Colors.white,
+                    margin: 5,
+                    borderRadius: 10,
+                    shadowColor: '#000',
+                    shadowOffset: { width: 1, height: 1 },
+                    shadowOpacity:  99,
+                    shadowRadius: 3,
+                    elevation: 2.5 } }>
+                  <View style={ { height:'90%', flexDirection:'row', alignItems:'center', paddingHorizontal: 10 } }>
+                    <View style={ { marginRight: '5%' } }>
+                      <Image source={ Images.homeFocused } style={ { width: 30, height: 30 } }/>
+                    </View>
+                    <Text color={ Colors.darkerBlack } weight='medium' style={ { width: '70%', marginTop: 5 } } size='xs' maxLines={ 1 }>{ item.name }</Text>
                   </View>
-                  <Text
-                    size={ 'xxs' }
-                    weight={ 'medium' }
-                    style={ { textAlign: 'center', paddingVertical: 5 } }
-                    color={ Colors.darkerBlack }>
-                    { item.title }
-                  </Text>
+                  <LinearGradient
+                    start={ { x: 0, y: 0 } } end={ { x: 1.5, y: 0 } } colors={ [Colors.primary, Colors.scooter]  }
+                    style={ { borderBottomLeftRadius: 10, borderBottomRightRadius: 10, height: '10%' } }
+                  />
+                </TouchableOpacity> }
+            />
+          </ScrollView>
+        </View>
+
+        <View>
+          <Text color={ Colors.primary } style={ { marginTop: 20, marginBottom: 10, marginLeft: 20 } } weight='semibold' size='m'>Kartu</Text>
+          <ScrollView horizontal>
+            <FlatList
+              data={ cardStudent }
+              renderItem={ ({ item }) =>
+                <TouchableOpacity activeOpacity={ 0.9 }>
+                  <LinearGradient
+                    key={ item.id }
+                    start={ { x: 0, y: 0 } } end={ { x: 1.5, y: 0 } } colors={ [Colors.primary, Colors.scooter] }
+                    style={ {
+                      marginHorizontal: 25,
+                      backgroundColor: Colors.white,
+                      width: windowWidth - 50,
+                      flex: 1,
+                      borderRadius: 10,
+                      shadowColor: '#000',
+                      shadowOffset: { width: 1, height: 1 },
+                      shadowOpacity:  0.4,
+                      shadowRadius: 3,
+                      elevation: 2.5,
+                      marginBottom: 10,
+                      padding: 15,
+                    } }>
+                    { /* <Image source={ Images.iconName } style={ { width: 80, height: 30, resizeMode:'center', marginBottom: 15 } }/> */ }
+                    <View style={ { flexDirection: 'row', flex: 1 } }>
+                      <Image
+                        source={ {
+                          uri: `${item.image}`,
+                        } }
+                        style={ { width: 50, height: 50, borderRadius: 999 } }
+                      />
+                      <View style={ { marginLeft: 15 } }>
+                        <Text size='s' weight='semibold' color={ Colors.white }>{ item.name }</Text>
+                        <Text size='s' weight='medium' color={ Colors.white }>{ item.nisn }</Text>
+                      </View>
+                    </View>
+                  </LinearGradient>
+                </TouchableOpacity> }
+            />
+          </ScrollView>
+          
+        </View>
+
+        <View>
+          <Text color={ Colors.primary } style={ { marginTop: 20, marginBottom: 10, marginLeft: 20 } } weight='semibold' size='m'>Saldo</Text>
+          <View
+            style={ {
+              marginHorizontal: 25,
+              backgroundColor: Colors.white,
+              width: windowWidth - 50,
+              flex: 1,
+              height: 100,
+              borderRadius: 10,
+              shadowColor: '#000',
+              shadowOffset: { width: 1, height: 1 },
+              shadowOpacity:  0.4,
+              shadowRadius: 3,
+              elevation: 2.5,
+              marginBottom: 5,
+              flexDirection: 'row',
+            } }>
+            <View style={ { width: '80%', padding: 15 } }>
+              <Text size='s' color={ Colors.darkerBlack }>
+                { auth?.full_name }
+              </Text>
+              <Text size='s' color={ Colors.darkerBlack }>
+                { auth?.phone }
+              </Text>
+              <Text weight='semibold' size='m' color={ Colors.darkerBlack }>
+              Rp { form.stringToCurrency(auth?.saldo) }
+              </Text>
+            </View>
+            <LinearGradient colors={ ['#0283d9', '#40d09c'] } style={ { width: '20%', height: '100%', backgroundColor: Colors.primary, borderTopRightRadius: 10, borderBottomRightRadius: 10 } }/>
+          </View>
+        </View>
+
+        <View style={ { marginBottom: 50 } }>
+          <Text color={ Colors.primary } style={ { marginTop: 20, marginBottom: 10, marginLeft: 20 } } weight='semibold' size='m'>Informasi</Text>
+          <ScrollView horizontal={ true } style={ { marginBottom: 20, marginLeft: 15 } } showsHorizontalScrollIndicator={ false }>
+            <FlatList
+              data={ cardBox }
+              scrollEnabled={ true }
+              contentContainerStyle={ { flexDirection: 'row' } }
+              renderItem={ ({ item }) => (
+                <TouchableOpacity key={ item.id } style={ { backgroundColor: Colors.white, width: 220,  elevation: 0.5, borderRadius: 10, marginHorizontal: 5 } }>
+                  <Image style={ { width: '100%', height: 100, resizeMode: 'cover' } } source={ { uri : `${item.image}` } } />
+                  <View style={ { padding: 10 } }>
+                    <Text style={ { maxWidth: 200 } } size='xs' weight='semibold'>{ item.title }</Text>
+                    <Text maxLines={ 2 } style={ { maxWidth: 200 } }>{ item.desc }</Text>
+                  </View>
                 </TouchableOpacity>
               ) }
             />
           </ScrollView>
         </View>
-        <ScrollView horizontal={ true } style={ { marginVertical: 20, marginLeft: 15 } } showsHorizontalScrollIndicator={ false }>
-          <FlatList
-            data={ cardBox }
-            scrollEnabled={ true }
-            contentContainerStyle={ { flexDirection: 'row' } }
-            renderItem={ ({ item }) => (
-              <TouchableOpacity key={ item.id } style={ { backgroundColor: Colors.lightGrey, width: 220,  elevation: 0.5, borderRadius: 10, marginHorizontal: 5 } }>
-                <Image style={ { width: '100%', height: 100, resizeMode: 'cover' } } source={ { uri : `${item.image}` } } />
-                <View style={ { padding: 10 } }>
-                  <Text style={ { maxWidth: 200 } } size='xs' weight='semibold'>{ item.title }</Text>
-                  <Text maxLines={ 2 } style={ { maxWidth: 200 } }>{ item.desc }</Text>
-                </View>
-              </TouchableOpacity>
-            ) }
-          />
-        </ScrollView>
+
       </ScrollView>
     </View>
       
@@ -267,3 +307,4 @@ const Home = () => {
 };
 
 export default Home;
+

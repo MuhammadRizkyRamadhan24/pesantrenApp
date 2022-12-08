@@ -25,6 +25,10 @@ export default {
     url: '/requestotp',
     contentType: json,
   },
+  getDetailUser: {
+    baseUrl,
+    url: '/me',
+  },
   // getHacbNo: ({ HACB_ORIGIN }) => ({
   //   baseUrl,
   //   url: '/megahub/handovergetnohacb',

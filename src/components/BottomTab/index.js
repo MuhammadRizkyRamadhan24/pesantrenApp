@@ -8,12 +8,14 @@ import Home from 'screens/Home';
 import Cards from 'screens/Cards';
 import Profile from 'screens/Profile';
 import History from 'screens/History';
+import Payment from 'screens/Payment';
 
 const BottomTab = createBottomTabNavigator();
 const bottomTabScreenOptions = { unmountOnBlur: true, height: 200 };
 const bottomTabScreens = [
   { name: 'home', component: Home },
   { name: 'cards', component: Cards },
+  { name: 'payment', component: Payment },
   { name: 'history', component: History },
   { name: 'profile', component: Profile },
 ];
@@ -44,6 +46,10 @@ const BottomTabNav = () => {
             imageUnFocused = Images.home;
             break;
           case 'cards':
+            imageFocused = Images.cardBottomFocused;
+            imageUnFocused = Images.cardBottom;
+            break;
+          case 'payment':
             imageFocused = Images.cardBottomFocused;
             imageUnFocused = Images.cardBottom;
             break;
@@ -83,7 +89,9 @@ const BottomTabNav = () => {
                       ? 'History'
                       : route.name === 'profile'
                         ? 'Akun'
-                        : null }
+                        : route.name === 'payment'
+                          ? 'Pembayaran'
+                          : null }
               </Text>
             </View>
           );

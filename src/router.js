@@ -12,16 +12,16 @@ const Stack = createStackNavigator();
 const Router = () => {
   const [currentRouteName, setCurrentRouteName] = useState(screenName.LOGIN);
   const auth = useSelector(state => state.auth.auth);
-  
+
   useEffect(() => {
-    if (auth.accessToken) {
+    if (auth?.accessToken) {
       // Home
       navigation.replace(screenName.MAIN);
     } else {
       // Login
       navigation.replace(screenName.LOGIN);
     }
-  }, [auth.accessToken]);
+  }, [auth]);
 
   return (
     <NavigationContainer
@@ -41,7 +41,10 @@ const Router = () => {
 
         navigation.routeNameRef.current = _currentRouteName;
       } }>
-      <StatusBar barStyle='dark-content' backgroundColor={ 'white' } />
+      <StatusBar
+        barStyle='dark-content'
+        translucent
+        backgroundColor='transparent' />
 
       <Stack.Navigator
         screenOptions={ {

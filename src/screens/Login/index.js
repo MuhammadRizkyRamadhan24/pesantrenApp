@@ -41,7 +41,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (auth.msg === 'user inactive, validated otp') {
+    if (auth?.msg === 'user inactive, validated otp') {
       dispatch(
         reqOtpFetch({
           data: { phone: phone },
@@ -53,14 +53,7 @@ const Login = () => {
         response: [],
       });
     }
-  }, [auth.msg]);
-
-  useEffect(() => {
-    dispatch({
-      type: Dispatches.LOGIN_RESPONSE,
-      response: [],
-    });
-  }, []);
+  }, [auth?.msg]);
 
   return (
     <View style={ Styles.container }>
